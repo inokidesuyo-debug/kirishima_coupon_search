@@ -14,7 +14,7 @@ body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,Bl
 .hero p{margin:0;opacity:.92}
 .filters{position:sticky;top:0;background:rgba(247,246,242,.94);backdrop-filter:blur(8px);padding:12px 0;z-index:10}
 .filter-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 8px 22px rgba(0,0,0,.05)}
-.row{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr auto auto;gap:10px;align-items:center}
+.row{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr auto;gap:10px;align-items:center}
 input,select,button{font:inherit}
 input,select{width:100%;font-size:16px;border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff}
 .btn{border:0;border-radius:12px;padding:11px 16px;font-weight:700;cursor:pointer;white-space:nowrap}
@@ -22,6 +22,7 @@ input,select{width:100%;font-size:16px;border:1px solid var(--line);border-radiu
 .btn-main:hover{background:var(--main2)}
 .btn-reset{background:var(--sub);color:#5d4935}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.search-hint{font-size:12px;color:var(--muted);margin-top:8px}
 .chip{border:1px solid var(--line);background:var(--sub);border-radius:999px;padding:6px 10px;font-size:13px;color:#4d4033;cursor:pointer}
 .chip.active{background:var(--main);color:#fff;border-color:var(--main)}
 .meta{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:16px 2px;color:var(--muted);font-size:14px}
@@ -69,7 +70,7 @@ input,select{width:100%;font-size:16px;border:1px solid var(--line);border-radiu
   <section class="filters" aria-label="検索条件">
     <div class="filter-card">
       <div class="row">
-        <input id="keyword" type="search" placeholder="店名で検索 例：焼肉、コスモス、温泉" autocomplete="off">
+        <input id="keyword" type="search" placeholder="店名を入力（例：タイヨー、焼肉、温泉）" autocomplete="off">
         <select id="areaFilter"><option value="">全エリア</option></select>
         <select id="genreFilter"><option value="">全ジャンル</option></select>
         <select id="storeTypeFilter">
@@ -77,10 +78,10 @@ input,select{width:100%;font-size:16px;border:1px solid var(--line);border-radiu
           <option value="small">小規模店舗のみ</option>
           <option value="large">大規模店舗のみ</option>
         </select>
-        <button id="searchBtn" class="btn btn-main" type="button">検索</button>
         <button id="resetBtn" class="btn btn-reset" type="button">リセット</button>
       </div>
       <div class="chips" id="quickGenres" aria-label="よく使うジャンル"></div>
+      <div class="search-hint">入力・選択すると自動で絞り込まれます。</div>
     </div>
   </section>
 
