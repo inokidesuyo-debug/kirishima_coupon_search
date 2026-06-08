@@ -11,7 +11,7 @@
 <body>
 <div class="wrap">
   <section class="hero"><h1>霧島市プレミアム商品券<br>使えるお店検索</h1><p>PDF一覧を、エリア・ジャンル・店名で探しやすくした非公式の検索ページです。</p></section>
-  <div class="rule"><strong>商品券ルール：</strong>1冊14枚のうち、黄色背景の大規模店舗では7枚まで利用できます。小規模店舗では14枚すべて利用できます。</div>
+  <div class="rule"><strong>商品券ルール：</strong>1冊14枚のうち、黄色背景の大規模店舗では7枚まで利用できます。小規模店舗では14枚すべて利用できます。大型店舗区分は公式資料をもとに作成し、一部手動で補正しています。</div>
   <section class="filters"><div class="filter-card"><div class="row"><input id="keyword" type="search" placeholder="店名で検索 例：焼肉、コスモス、温泉"><select id="area"><option value="">全エリア</option></select><select id="genre"><option value="">全ジャンル</option></select><select id="ticket"><option value="">全店舗</option><option value="normal">小規模店舗のみ（14枚使える）</option><option value="large">大規模店舗のみ（7枚まで）</option></select></div><div class="chips" id="quickGenres"></div></div></section>
   <div class="meta"><span id="count">読み込み中...</span><span>令和8年5月27日現在PDFより作成</span></div>
   <main id="shopList" class="list"></main>
@@ -33,7 +33,7 @@ function render(){
   const largeCount=shops.filter(s=>s.is_large_store).length;
   countEl.textContent=`${filtered.length}件 / ${shops.length}件（大規模店舗 ${largeCount}件）`;
   if(!filtered.length){listEl.innerHTML='<div class="empty">該当するお店が見つかりませんでした</div>';return;}
-  listEl.innerHTML=filtered.map(s=>`<article class="shop"><div><h2>${escapeHtml(s.name)}</h2><div class="tags"><span class="tag area">${escapeHtml(s.area)}</span><span class="tag">${escapeHtml(s.genre)}</span>${s.is_large_store?'<span class="tag large">大規模店舗：共通券のみ</span>':'<span class="tag normal">小規模店舗：14枚利用可</span>'}</div></div><a class="map" target="_blank" rel="noopener" href="https://www.google.com/search?q=${encodeURIComponent(s.map_query)}">地図検索</a></article>`).join('');
+  listEl.innerHTML=filtered.map(s=>`<article class="shop"><div><h2>${escapeHtml(s.name)}</h2><div class="tags"><span class="tag area">${escapeHtml(s.area)}</span><span class="tag">${escapeHtml(s.genre)}</span>${s.is_large_store?'<span class="tag large">大規模店舗：共通券のみ</span>':'<span class="tag normal">小規模店舗：14枚利用可</span>'}${s.verified?'<span class="tag">手動確認済み</span>':''}</div></div><a class="map" target="_blank" rel="noopener" href="https://www.google.com/search?q=${encodeURIComponent(s.map_query)}">地図検索</a></article>`).join('');
 }
 function escapeHtml(str){return String(str).replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]));}
 </script>
