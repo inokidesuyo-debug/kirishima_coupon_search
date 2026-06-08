@@ -101,7 +101,6 @@ const areaEl = document.getElementById('areaFilter');
 const genreEl = document.getElementById('genreFilter');
 const storeTypeEl = document.getElementById('storeTypeFilter');
 const keywordEl = document.getElementById('keyword');
-const searchBtn = document.getElementById('searchBtn');
 const resetBtn = document.getElementById('resetBtn');
 const listEl = document.getElementById('shopList');
 const countEl = document.getElementById('resultCount');
@@ -120,7 +119,6 @@ areas.forEach(area => addOption(areaEl, area));
 genres.forEach(genre => addOption(genreEl, genre));
 ['飲食店','カフェ・スイーツ','スーパー・食品','コンビニ','ドラッグストア・薬局','宿泊・温泉'].forEach(makeGenreChip);
 
-searchBtn.addEventListener('click', renderShops);
 resetBtn.addEventListener('click', () => {
   keywordEl.value = '';
   areaEl.value = '';
@@ -130,7 +128,8 @@ resetBtn.addEventListener('click', () => {
   keywordEl.focus();
 });
 keywordEl.addEventListener('keydown', e => { if (e.key === 'Enter') renderShops(); });
-[keywordEl, areaEl, genreEl, storeTypeEl].forEach(el => el.addEventListener('input', renderShops));
+keywordEl.addEventListener('input', renderShops);
+[areaEl, genreEl, storeTypeEl].forEach(el => el.addEventListener('change', renderShops));
 
 function renderShops() {
   const keyword = normalizeText(keywordEl.value);
